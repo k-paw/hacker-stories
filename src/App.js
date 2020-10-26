@@ -1,73 +1,54 @@
 import React from 'react';
 
-const App = () => {
-  const stories = [
-    {
-      title: 'React',
-      url: 'https://reactjs.org/',
-      author: 'Jordan Walke',
-      num_comments: 3,
-      points: 4,
-      objectID: 0,
-    },
-    {
-      title: 'Redux',
-      url: 'https://redux.js.org/',
-      author: 'Dan Abramox, Andrew Clark',
-      num_comments: 2,
-      points: 5,
-      objectID: 1,
-    },
-  ];
-
-  const handleSearch = event => {
-    console.log(event.target.value);
-  };
-
+const list = [
+  {
+    title: 'React',
+    url: 'https://reactjs.org',
+    author: 'Jordan Walke',
+    num_comments: 3,
+    points: 4,
+    objectID: 0,
+  },
+  {
+    title: 'Redux',
+    url: 'https://redux.js.org/',
+    author: 'Dan Abramov, Andrew Clark',
+    num_comments: 2,
+    points: 5,
+    objectID: 1,
+  },
+]
+function App () {
   return (
     <div>
       <h1>My Hacker Stories</h1>
 
-      <Search onSearch={handleSearch} />
+      <label htmlFor="search">Search: </label>
+      <input id="search" type="text" />
 
       <hr />
 
-      <List list={stories} />
+      <List />
     </div>
   );
-};
+}
 
-const Search = props => {
-  const [searchTerm, setSearchTerm] = React.useState('');
-
-  const handleChange = event => {
-    setSearchTerm(event.target.value);
-
-    props.onSearch(event);
-  };
-  return (
-    <div>
-      <label htmlFor="search">Search: </label>
-      <input id="search" type="text" onChange={handleChange} />
-
-      <p>
-        Searching for <strong>{searchTerm}</strong>
-      </p>
-    </div>
-  );
-};
-
-const List = props =>
-  props.list.map(item => (
-    <div key={item.objectID}>
+function List() {
+  return list.map(function(fuck) {
+    return (
+      <div key={fuck.objectID}>
       <span>
-        <a href={item.url}>{item.title}</a>
+        <a href={fuck.url}>{fuck.title}</a>
       </span>
-      <span>{item.author}</span>
-      <span>{item.num_comments}</span>
-      <span>{item.points}</span>
-    </div>
-  ));
+      <br></br>
+      <span>{fuck.author}</span>
+      <br></br>
+      <span>{fuck.num_comments}</span>
+      <br></br>
+      <span>{fuck.points}</span>
+      </div>
 
-
+    )
+  })
+}
 export default App;
